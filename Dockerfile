@@ -26,7 +26,7 @@ RUN set -x \
  && mkdir /openarc \
  && curl -sSL https://github.com/trusteddomainproject/OpenARC/archive/${VERSION}.tar.gz | tar zxvf - -C /openarc --strip-components 1 \
  && cd /openarc \
- && autoreconf -fvi \
+ && autoreconf -fiv \
  && ./configure --prefix=/usr \
  && make \
  && make install
@@ -41,7 +41,8 @@ COPY --from=builder /usr/share/doc/openarc /usr/share/doc/
 
 RUN set -x \
  && apk add --no-cache \
-    libmilter
+    libmilter \
+    jansson
 
 RUN set -x \
  && addgroup -g 101 -S opendkim \
