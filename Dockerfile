@@ -7,13 +7,15 @@ RUN set -x \
  && apk add --no-cache \
     autoconf \
     automake \
+    bsd-compat-headers \
     build-base \
     curl \
-    libbsd-dev \
+    jansson-dev \
+    libidn2-dev \
     libmilter-dev \
     libtool \
     make \
-    openssl \
+    musl-dev
     openssl-dev \
     pkgconfig
 
@@ -25,6 +27,7 @@ RUN set -x \
  && cd /openarc \
  && autoreconf -fvi \
  && ./configure --prefix=/usr \
+ && make \
  && make install
 
 FROM alpine:latest
