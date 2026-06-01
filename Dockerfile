@@ -15,7 +15,7 @@ RUN set -x \
     libmilter-dev \
     libtool \
     make \
-    musl-dev
+    musl-dev \
     openssl-dev \
     pkgconfig
 
