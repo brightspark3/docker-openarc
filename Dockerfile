@@ -10,6 +10,7 @@ RUN set -x \
     bsd-compat-headers \
     build-base \
     curl \
+    jansson \
     jansson-dev \
     libidn2-dev \
     libmilter-dev \
