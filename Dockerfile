@@ -40,7 +40,7 @@ COPY --from=builder /usr/lib/libopenarc.so.0 /usr/lib/
 COPY --from=builder /usr/share/doc/openarc /usr/share/doc/
 
 RUN set -x \
- && curl -sSL https://raw.githubusercontent.com/brightspark3/docker-openarc/refs/heads/master/openarc.conf.sample > /etc/openarc/openarc.conf \
+ && curl -sSL https://raw.githubusercontent.com/brightspark3/docker-openarc/refs/heads/master/openarc.conf.sample -o /etc/openarc/openarc.conf \
  && apk add --no-cache \
     libmilter \
     jansson
