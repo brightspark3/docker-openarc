@@ -25,7 +25,7 @@ RUN set -x \
 RUN set -x \
  && mkdir /openarc \
  && curl -sSL https://github.com/trusteddomainproject/OpenARC/archive/${VERSION}.tar.gz | tar zxvf - -C /openarc --strip-components 1 \
- && curl -sSL https://raw.githubusercontent.com/brightspark3/docker-openarc/refs/heads/master/openarc.conf.sample -o /tmp/openarc.conf
+ && curl -sSL https://raw.githubusercontent.com/brightspark3/docker-openarc/refs/heads/master/openarc.conf.sample -o /tmp/openarc.conf \
  && cd /openarc \
  && autoreconf -fiv \
  && ./configure --prefix=/usr \
