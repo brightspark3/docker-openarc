@@ -25,6 +25,7 @@ RUN set -x \
 RUN set -x \
  && mkdir /openarc \
  && curl -sSL https://github.com/trusteddomainproject/OpenARC/archive/${VERSION}.tar.gz | tar zxvf - -C /openarc --strip-components 1 \
+ && curl -sSL https://raw.githubusercontent.com/brightspark3/docker-openarc/refs/heads/master/openarc.conf.sample -o /tmp/openarc.conf
  && cd /openarc \
  && autoreconf -fiv \
  && ./configure --prefix=/usr \
@@ -38,13 +39,13 @@ ENV LANG="en_US.UTF-8"
 COPY --from=builder /usr/sbin/openarc /usr/sbin/
 COPY --from=builder /usr/lib/libopenarc.so.0 /usr/lib/
 COPY --from=builder /usr/share/doc/openarc /usr/share/doc/
+COPY --from=builder /tmp/openarc.conf /etc/openarc/openarc.conf
 
 RUN set -x \
  && apk add --no-cache \
     curl \
     libmilter \
-    jansson \
- && curl -sSL https://raw.githubusercontent.com/brightspark3/docker-openarc/refs/heads/master/openarc.conf.sample -o /etc/openarc/openarc.conf
+    jansson
 
 RUN set -x \
  && addgroup -g 101 -S opendkim \
