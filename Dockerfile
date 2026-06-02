@@ -20,11 +20,9 @@ RUN set -x \
     openssl-dev \
     pkgconfig
 
-#ADD https://github.com/trusteddomainproject/OpenARC/archive/rel-openarc-1-0-0-Beta3.tar.gz /OpenARC
-
 RUN set -x \
  && mkdir /openarc \
- && curl -sSL https://github.com/trusteddomainproject/OpenARC/archive/${VERSION}.tar.gz | tar zxvf - -C /openarc --strip-components 1 \
+ && curl -sSL https://github.com/flowerysong/OpenARC/releases/download/v1.3.0/openarc-1.3.0.tar.gz | tar zxvf - -C /openarc --strip-components 1 \
  && curl -sSL https://raw.githubusercontent.com/brightspark3/docker-openarc/refs/heads/master/openarc.conf.sample -o /tmp/openarc.conf \
  && cd /openarc \
  && autoreconf -fiv \
