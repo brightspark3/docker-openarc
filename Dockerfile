@@ -43,7 +43,6 @@ COPY --from=builder /tmp/openarc.conf /etc/openarc/openarc.conf
 
 RUN set -x \
  && apk add --no-cache \
-    curl \
     libmilter \
     jansson
 
