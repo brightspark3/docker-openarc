@@ -35,16 +35,19 @@ LABEL maintainer="George Parremore <github@gop.id.au>"
 ENV LANG="en_US.UTF-8"
 
 COPY --from=builder /usr/sbin/openarc /usr/sbin/
-COPY --from=builder /usr/lib/libopenarc.so.0 /usr/lib/
+COPY --from=builder /usr/lib/libopenarc.so.1.1.0 /usr/lib/
 COPY --from=builder /usr/share/doc/openarc /usr/share/doc/
 COPY --from=builder /tmp/openarc.conf /etc/openarc/openarc.conf
 
 RUN set -x \
  && apk add --no-cache \
+    libidn2 \
     libmilter \
     jansson
 
 RUN set -x \
+ && ln -s /usr/lib/libopenarc.so.1.1.0 /usr/lib/libopenarc.so.1 \
+ && ln -s /usr/lib/libopenarc.so.1.1.0 /usr/lib/libopenarc.so \
  && addgroup -g 101 -S opendkim \
  && adduser -h /run/opendkim -s /sbin/nologin -D -S -u 100 -g openarc -G opendkim opendkim \
  && addgroup opendkim mail
