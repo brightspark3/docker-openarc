@@ -1,5 +1,5 @@
-FROM alpine:latest as builder
-LABEL maintainer George Parremore <github@gop.id.au>
+FROM alpine:latest AS builder
+LABEL maintainer="George Parremore <github@gop.id.au>"
 ENV LANG="en_US.UTF-8" \
     VERSION="develop"
 
@@ -31,7 +31,7 @@ RUN set -x \
  && make install
 
 FROM alpine:latest
-LABEL maintainer George Parremore <github@gop.id.au>
+LABEL maintainer="George Parremore <github@gop.id.au>"
 ENV LANG="en_US.UTF-8"
 
 COPY --from=builder /usr/sbin/openarc /usr/sbin/
